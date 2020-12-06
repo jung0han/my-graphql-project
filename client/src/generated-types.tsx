@@ -1,8 +1,9 @@
-/* eslint-disable */
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -10,13 +11,16 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A field whose value conforms with the standard mongodb object ID as described here: https://docs.mongodb.com/manual/reference/method/ObjectId/#ObjectId. Example: 5e5677d71bdc2ae76344968c */
+  GraphbackObjectID: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
-/**  @model  */
+/** @model */
 export type Comment = {
   __typename?: 'Comment';
-  /**  @id  */
-  _id: Scalars['ID'];
+  _id: Scalars['GraphbackObjectID'];
   text?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   /** @manyToOne(field: 'comments', key: 'noteId') */
@@ -24,10 +28,10 @@ export type Comment = {
 };
 
 export type CommentFilter = {
-  _id?: Maybe<IdInput>;
+  _id?: Maybe<GraphbackObjectIdInput>;
   text?: Maybe<StringInput>;
   description?: Maybe<StringInput>;
-  noteId?: Maybe<IdInput>;
+  noteId?: Maybe<GraphbackObjectIdInput>;
   and?: Maybe<Array<CommentFilter>>;
   or?: Maybe<Array<CommentFilter>>;
   not?: Maybe<CommentFilter>;
@@ -45,43 +49,45 @@ export type CommentSubscriptionFilter = {
   and?: Maybe<Array<CommentSubscriptionFilter>>;
   or?: Maybe<Array<CommentSubscriptionFilter>>;
   not?: Maybe<CommentSubscriptionFilter>;
-  _id?: Maybe<IdInput>;
+  _id?: Maybe<GraphbackObjectIdInput>;
   text?: Maybe<StringInput>;
   description?: Maybe<StringInput>;
 };
 
 export type CreateCommentInput = {
-  _id?: Maybe<Scalars['ID']>;
+  _id?: Maybe<Scalars['GraphbackObjectID']>;
   text?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  noteId?: Maybe<Scalars['ID']>;
+  noteId?: Maybe<Scalars['GraphbackObjectID']>;
 };
 
 export type CreateNoteInput = {
-  _id?: Maybe<Scalars['ID']>;
+  _id?: Maybe<Scalars['GraphbackObjectID']>;
   title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
 };
 
-export type IdInput = {
-  ne?: Maybe<Scalars['ID']>;
-  eq?: Maybe<Scalars['ID']>;
-  le?: Maybe<Scalars['ID']>;
-  lt?: Maybe<Scalars['ID']>;
-  ge?: Maybe<Scalars['ID']>;
-  gt?: Maybe<Scalars['ID']>;
-  in?: Maybe<Array<Scalars['ID']>>;
+
+export type GraphbackObjectIdInput = {
+  ne?: Maybe<Scalars['GraphbackObjectID']>;
+  eq?: Maybe<Scalars['GraphbackObjectID']>;
+  le?: Maybe<Scalars['GraphbackObjectID']>;
+  lt?: Maybe<Scalars['GraphbackObjectID']>;
+  ge?: Maybe<Scalars['GraphbackObjectID']>;
+  gt?: Maybe<Scalars['GraphbackObjectID']>;
+  in?: Maybe<Array<Scalars['GraphbackObjectID']>>;
+  between?: Maybe<Array<Scalars['GraphbackObjectID']>>;
 };
 
 export type MutateCommentInput = {
-  _id: Scalars['ID'];
+  _id: Scalars['GraphbackObjectID'];
   text?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  noteId?: Maybe<Scalars['ID']>;
+  noteId?: Maybe<Scalars['GraphbackObjectID']>;
 };
 
 export type MutateNoteInput = {
-  _id: Scalars['ID'];
+  _id: Scalars['GraphbackObjectID'];
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
 };
@@ -126,11 +132,10 @@ export type MutationDeleteCommentArgs = {
   input: MutateCommentInput;
 };
 
-/**  @model  */
+/** @model */
 export type Note = {
   __typename?: 'Note';
-  /**  @id  */
-  _id: Scalars['ID'];
+  _id: Scalars['GraphbackObjectID'];
   title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   /**
@@ -141,13 +146,13 @@ export type Note = {
 };
 
 
-/**  @model  */
+/** @model */
 export type NoteCommentsArgs = {
   filter?: Maybe<CommentFilter>;
 };
 
 export type NoteFilter = {
-  _id?: Maybe<IdInput>;
+  _id?: Maybe<GraphbackObjectIdInput>;
   title?: Maybe<StringInput>;
   description?: Maybe<StringInput>;
   and?: Maybe<Array<NoteFilter>>;
@@ -167,7 +172,7 @@ export type NoteSubscriptionFilter = {
   and?: Maybe<Array<NoteSubscriptionFilter>>;
   or?: Maybe<Array<NoteSubscriptionFilter>>;
   not?: Maybe<NoteSubscriptionFilter>;
-  _id?: Maybe<IdInput>;
+  _id?: Maybe<GraphbackObjectIdInput>;
   title?: Maybe<StringInput>;
   description?: Maybe<StringInput>;
 };
@@ -193,7 +198,7 @@ export type Query = {
 
 
 export type QueryGetNoteArgs = {
-  id: Scalars['ID'];
+  id: Scalars['GraphbackObjectID'];
 };
 
 
@@ -205,7 +210,7 @@ export type QueryFindNotesArgs = {
 
 
 export type QueryGetCommentArgs = {
-  id: Scalars['ID'];
+  id: Scalars['GraphbackObjectID'];
 };
 
 
@@ -273,6 +278,12 @@ export type SubscriptionDeletedCommentArgs = {
   filter?: Maybe<CommentSubscriptionFilter>;
 };
 
+export enum CacheControlScope {
+  Public = 'PUBLIC',
+  Private = 'PRIVATE'
+}
+
+
 export type GetDraftNotesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -332,7 +343,7 @@ export type FindNotesQuery = (
 );
 
 export type GetNoteQueryVariables = Exact<{
-  id: Scalars['ID'];
+  id: Scalars['GraphbackObjectID'];
 }>;
 
 
@@ -364,7 +375,7 @@ export type FindCommentsQuery = (
 );
 
 export type GetCommentQueryVariables = Exact<{
-  id: Scalars['ID'];
+  id: Scalars['GraphbackObjectID'];
 }>;
 
 
@@ -643,7 +654,7 @@ export type FindNotesQueryHookResult = ReturnType<typeof useFindNotesQuery>;
 export type FindNotesLazyQueryHookResult = ReturnType<typeof useFindNotesLazyQuery>;
 export type FindNotesQueryResult = Apollo.QueryResult<FindNotesQuery, FindNotesQueryVariables>;
 export const GetNoteDocument = gql`
-    query getNote($id: ID!) {
+    query getNote($id: GraphbackObjectID!) {
   getNote(id: $id) {
     ...NoteExpandedFields
   }
@@ -666,7 +677,7 @@ export const GetNoteDocument = gql`
  *   },
  * });
  */
-export function useGetNoteQuery(baseOptions?: Apollo.QueryHookOptions<GetNoteQuery, GetNoteQueryVariables>) {
+export function useGetNoteQuery(baseOptions: Apollo.QueryHookOptions<GetNoteQuery, GetNoteQueryVariables>) {
         return Apollo.useQuery<GetNoteQuery, GetNoteQueryVariables>(GetNoteDocument, baseOptions);
       }
 export function useGetNoteLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNoteQuery, GetNoteQueryVariables>) {
@@ -716,7 +727,7 @@ export type FindCommentsQueryHookResult = ReturnType<typeof useFindCommentsQuery
 export type FindCommentsLazyQueryHookResult = ReturnType<typeof useFindCommentsLazyQuery>;
 export type FindCommentsQueryResult = Apollo.QueryResult<FindCommentsQuery, FindCommentsQueryVariables>;
 export const GetCommentDocument = gql`
-    query getComment($id: ID!) {
+    query getComment($id: GraphbackObjectID!) {
   getComment(id: $id) {
     ...CommentExpandedFields
   }
@@ -739,7 +750,7 @@ export const GetCommentDocument = gql`
  *   },
  * });
  */
-export function useGetCommentQuery(baseOptions?: Apollo.QueryHookOptions<GetCommentQuery, GetCommentQueryVariables>) {
+export function useGetCommentQuery(baseOptions: Apollo.QueryHookOptions<GetCommentQuery, GetCommentQueryVariables>) {
         return Apollo.useQuery<GetCommentQuery, GetCommentQueryVariables>(GetCommentDocument, baseOptions);
       }
 export function useGetCommentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCommentQuery, GetCommentQueryVariables>) {

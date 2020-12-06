@@ -4,10 +4,10 @@
   "private": true,
   "devDependencies": {
     "@graphql-codegen/add": "2.0.1",
-    "@graphql-codegen/cli": "^1.19.4",
-    "@graphql-codegen/typescript": "1.17.10",
-    "@graphql-codegen/typescript-operations": "1.17.8",
-    "@graphql-codegen/typescript-react-apollo": "2.0.7",
+    "@graphql-codegen/cli": "1.19.4",
+    "@graphql-codegen/typescript": "1.19.0",
+    "@graphql-codegen/typescript-operations": "1.17.12",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
     "graphback-cli": "^1.1.0",
     "graphql": "15.3.0",
     "graphql-cli": "4.1.0",
@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "generate": "graphback generate && graphql codegen",
     "build:react": "react-scripts build",
-    "eject:react": "react-scripts eject"
+    "eject:react": "react-scripts eject",
+    "y": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
