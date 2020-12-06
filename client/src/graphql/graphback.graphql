@@ -1,147 +1,141 @@
 fragment NoteFields on Note {
-  _id
-  title
-  description
+   _id
+   title
+   description
+
 }
 
 fragment NoteExpandedFields on Note {
-  _id
-  title
-  description
-  comments {
-    _id
-    text
-    description
-  }
+   _id
+   title
+   description
+   comments {
+      _id
+      text
+      description
+   }
 }
 
 fragment CommentFields on Comment {
-  _id
-  text
-  description
+   _id
+   text
+   description
+
 }
 
 fragment CommentExpandedFields on Comment {
-  _id
-  text
-  description
-  note {
-    _id
-    title
-    description
-  }
+   _id
+   text
+   description
+   note {
+      _id
+      title
+      description
+   }
 }
 
-query findNotes(
-  $filter: NoteFilter
-  $page: PageRequest
-  $orderBy: OrderByInput
-) {
-  findNotes(filter: $filter, page: $page, orderBy: $orderBy) {
-    items {
-      ...NoteExpandedFields
+query findNotes($filter: NoteFilter, $page: PageRequest, $orderBy: OrderByInput) {
+    findNotes(filter: $filter, page: $page, orderBy: $orderBy) {
+      items {
+        ...NoteExpandedFields
+      }
+      offset
+      limit
+      count
     }
-    offset
-    limit
-    count
-  }
 }
 
 query getNote($id: GraphbackObjectID!) {
-  getNote(id: $id) {
-    ...NoteExpandedFields
-  }
+    getNote(id: $id) {
+      ...NoteExpandedFields
+    }
 }
 
-query findComments(
-  $filter: CommentFilter
-  $page: PageRequest
-  $orderBy: OrderByInput
-) {
-  findComments(filter: $filter, page: $page, orderBy: $orderBy) {
-    items {
-      ...CommentExpandedFields
+query findComments($filter: CommentFilter, $page: PageRequest, $orderBy: OrderByInput) {
+    findComments(filter: $filter, page: $page, orderBy: $orderBy) {
+      items {
+        ...CommentExpandedFields
+      }
+      offset
+      limit
+      count
     }
-    offset
-    limit
-    count
-  }
 }
 
 query getComment($id: GraphbackObjectID!) {
-  getComment(id: $id) {
-    ...CommentExpandedFields
-  }
+    getComment(id: $id) {
+      ...CommentExpandedFields
+    }
 }
 
 mutation createNote($input: CreateNoteInput!) {
   createNote(input: $input) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 mutation updateNote($input: MutateNoteInput!) {
   updateNote(input: $input) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 mutation deleteNote($input: MutateNoteInput!) {
   deleteNote(input: $input) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 mutation createComment($input: CreateCommentInput!) {
   createComment(input: $input) {
-    ...CommentFields
+      ...CommentFields
   }
 }
 
 mutation updateComment($input: MutateCommentInput!) {
   updateComment(input: $input) {
-    ...CommentFields
+      ...CommentFields
   }
 }
 
 mutation deleteComment($input: MutateCommentInput!) {
   deleteComment(input: $input) {
-    ...CommentFields
+      ...CommentFields
   }
 }
 
 subscription newNote($filter: NoteSubscriptionFilter) {
   newNote(filter: $filter) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 subscription updatedNote($filter: NoteSubscriptionFilter) {
   updatedNote(filter: $filter) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 subscription deletedNote($filter: NoteSubscriptionFilter) {
   deletedNote(filter: $filter) {
-    ...NoteFields
+      ...NoteFields
   }
 }
 
 subscription newComment($filter: CommentSubscriptionFilter) {
   newComment(filter: $filter) {
-    ...CommentFields
+      ...CommentFields
   }
 }
 
 subscription updatedComment($filter: CommentSubscriptionFilter) {
   updatedComment(filter: $filter) {
-    ...CommentFields
+      ...CommentFields
   }
 }
 
 subscription deletedComment($filter: CommentSubscriptionFilter) {
   deletedComment(filter: $filter) {
-    ...CommentFields
+      ...CommentFields
   }
 }
