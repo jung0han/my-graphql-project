@@ -1,4 +1,6 @@
-""" @model """
+"""
+@model
+"""
 type Note {
   _id: GraphbackObjectID!
   title: String!
@@ -9,12 +11,13 @@ type Note {
   comments: [Comment]!
 }
 
-""" @model """
+"""
+@model
+"""
 type Comment {
   _id: GraphbackObjectID!
   text: String
   description: String
-  roles: [String!]!
 }
 
 type Query {

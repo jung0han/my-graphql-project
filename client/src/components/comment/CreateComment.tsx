@@ -6,7 +6,7 @@ import '../notes/Note.css';
 
 type createCommentProps = {
     noteId: string,
-    addCommentState: any
+    addCommentState: any,
 }
 
 const CreateComment = ({ noteId, addCommentState }: createCommentProps) => {

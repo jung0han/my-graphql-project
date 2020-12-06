@@ -18,7 +18,6 @@ const CreateNote: React.FC = () => {
                     variant="outlined" 
                     onChange={(e) => setNewNoteTitle(e.target.value)}
                     value={newNoteTitle}
-                   
                     />
                 <TextField 
                     label="Description" 
