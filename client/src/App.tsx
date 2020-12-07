@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFindNotesQuery, useGetDraftNotesQuery } from './generated-types';
-import CreateNote from './components/notes/CreateNote';
-import OneNote from './components/notes/OneNote';
-import { Checkbox, Box, Container, List, ListItem } from '@material-ui/core';
+import './App.less';
+import Routes from './Routes';
 
 const App: React.FC = () => {
-  const allNotes = useFindNotesQuery();
-  allNotes.startPolling(2000);
-  console.log(allNotes.data?.findNotes)
+  // const allNotes = useFindNotesQuery();
+  // allNotes.startPolling(2000);
+  // console.log(allNotes.data?.findNotes)
 
-  const [viewDraftNotes, setViewDraftNotes] = useState(false);
+  // const [viewDraftNotes, setViewDraftNotes] = useState(false);
 
-  const draftNotes = useGetDraftNotesQuery();
+  // const draftNotes = useGetDraftNotesQuery();
 
-  const noteItems = viewDraftNotes ? draftNotes?.data?.getDraftNotes : allNotes.data?.findNotes?.items;
+  // const noteItems = viewDraftNotes ? draftNotes?.data?.getDraftNotes : allNotes.data?.findNotes?.items;
 
   return (
-    <Container>
-      <CreateNote />
+    <div style={{ minHeight: '100vh' }}>
+      <Routes />
+      {/* <CreateNote />
       <Box>
         <div style={{marginLeft: 400, paddingTop: 50 }}><Checkbox checked={viewDraftNotes} onChange={() => setViewDraftNotes(!viewDraftNotes)} /> <b>VIEW DRAFT NOTES</b></div>
         <ul>
@@ -28,8 +28,9 @@ const App: React.FC = () => {
             ))
           }
         </ul>
-      </Box>
-    </Container>
+        <Button type="primary">Button</Button>
+      </Box> */}
+    </div>
   );
 }
 
