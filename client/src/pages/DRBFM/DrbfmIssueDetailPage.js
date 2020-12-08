@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import {
-  Table,
   PageHeader,
   Select,
   Badge,
@@ -16,13 +15,10 @@ import {
   Timeline,
   Comment,
   Tooltip,
-  Avatar,
 } from 'antd';
 import {
   ExclamationCircleOutlined,
   IssuesCloseOutlined,
-  CheckCircleOutlined,
-  MessageOutlined,
 } from '@ant-design/icons';
 import { pageHeaderVar } from '../../localStorage';
 
@@ -132,9 +128,8 @@ const DrbfmIssueDetailPage = ({ history }) => {
               author={<a>leo.han</a>}
               content={
                 <p>
-                  모터 구동 시 신뢰성 / 소음 / 이음 등 발생원(ex. 기어부 조립 시
-                  Tilt, 기어별 치수 공차 등) 및 그에 대한 업체 관리 현황 확인 할
-                  것
+                  모터 기어 "위상 동기 설계" 부분에 대한 Risk 여부 창원
+                  전문가에게 문의하여 확인 할 것
                 </p>
               }
               datetime={

@@ -8,6 +8,11 @@ import QRiskListPage from './QRisk/QRiskListPage';
 import DrbfmIssueListPage from './DRBFM/DrbfmIssueListPage';
 import DrbfmIssueDetailPage from './DRBFM/DrbfmIssueDetailPage';
 import styled from 'styled-components';
+import QatListPage from './QAT/QatListPage';
+import QatPlanPage from './QAT/QatPlanPage';
+import QatDimPlanPage from './QAT/QatDimPlanPage';
+import QatInputPage from './QAT/QatInputPage';
+import QatInputItemPage from './QAT/QatInputItemPage';
 
 const StyledLayout = styled(Layout)`
   min-height: 100vh;
@@ -41,6 +46,14 @@ const PLM = () => {
             />
             <Route path="/plm/drbfm" component={DrbfmListPage} />
             <Route path="/plm/q-risk" component={QRiskListPage} />
+            <Route
+              path="/plm/qat/EAB12345678/input/1"
+              component={QatInputItemPage}
+            />
+            <Route path="/plm/qat/EAB12345678/input" component={QatInputPage} />
+            <Route path="/plm/qat/EAB12345678/dim" component={QatDimPlanPage} />
+            <Route path="/plm/qat/EAB12345678" component={QatPlanPage} />
+            <Route path="/plm/qat" component={QatListPage} />
           </Switch>
         </Layout>
       </Layout>
