@@ -147,10 +147,6 @@ const renderItem = (item) => {
 
 const originTargetKeys = ''; //미리 선택된 항목 설정
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
-}
-
 const StyledPageHeader = styled(PageHeader)`
   padding-left: 0px;
   padding-top: 0px;

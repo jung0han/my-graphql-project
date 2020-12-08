@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Tag, Row, Col, Layout, Button } from 'antd';
+import { Row, Col, Layout, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 

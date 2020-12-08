@@ -5,7 +5,6 @@ import moment from 'moment';
 import {
   PageHeader,
   Select,
-  Badge,
   Layout,
   Breadcrumb,
   Form,
@@ -37,51 +36,6 @@ const StyledComment = styled(Comment)`
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-}
-
-const columns = [
-  {
-    title: 'Category',
-    dataIndex: 'category',
-    render: (text) => {
-      return <Link to={`/plm/drbfm/EAB12345678/1`}>{text}</Link>;
-    },
-  },
-  {
-    title: 'Comment',
-    dataIndex: 'comment',
-  },
-  {
-    title: 'Owner',
-    dataIndex: 'owner',
-  },
-
-  {
-    title: 'Due Date',
-    dataIndex: 'dueDate',
-    width: 90,
-  },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    width: 90,
-    render: (text) => <Badge status={text[0]} text={text[1]} />,
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    category: 'AP/Modem 칩 구성',
-    comment: '모델 SW(Power) 팀 주관, 자사 모사항 없는지 테스트 결과 공유 필요',
-    owner: '모델팀',
-    dueDate: '12/24',
-    status: ['success', '완료'],
-  },
-];
-
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
 }
 
 const StyledPageHeader = styled(PageHeader)`
@@ -125,7 +79,7 @@ const DrbfmIssueDetailPage = ({ history }) => {
         <Timeline>
           <Timeline.Item dot={<ExclamationCircleOutlined />} color="red">
             <StyledComment
-              author={<a>leo.han</a>}
+              author={<b>leo.han</b>}
               content={
                 <p>
                   모터 기어 "위상 동기 설계" 부분에 대한 Risk 여부 창원
@@ -141,7 +95,7 @@ const DrbfmIssueDetailPage = ({ history }) => {
           </Timeline.Item>
           <Timeline.Item color="green">
             <StyledComment
-              author={<a>dongwoo.jeong</a>}
+              author={<b>dongwoo.jeong</b>}
               content={
                 <p>
                   연구소에서 창원 전문가에게 기어강도 마진 설계 방법, 치수 계산
@@ -165,7 +119,7 @@ const DrbfmIssueDetailPage = ({ history }) => {
           </Timeline.Item>
           <Timeline.Item color="green">
             <StyledComment
-              author={<a>leo.han</a>}
+              author={<b>leo.han</b>}
               content={<p>위상동기 설계 추가 검토 필요</p>}
               datetime={
                 <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
@@ -184,7 +138,7 @@ const DrbfmIssueDetailPage = ({ history }) => {
           </Timeline.Item>
           <Timeline.Item color="green">
             <StyledComment
-              author={<a>dongwoo.jeong</a>}
+              author={<b>dongwoo.jeong</b>}
               content={
                 <p>
                   위상동기 설계는 A모터와 B모터 피니언기어 위상 동기화 설계함

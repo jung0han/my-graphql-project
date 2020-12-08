@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFindNotesQuery, useGetDraftNotesQuery } from './generated-types';
+// import { useFindNotesQuery, useGetDraftNotesQuery } from './generated-types';
 import './App.less';
 import Routes from './Routes';
 

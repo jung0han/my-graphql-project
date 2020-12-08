@@ -1,11 +1,7 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import {
-  UserOutlined,
-  PartitionOutlined,
-  RocketOutlined,
-} from '@ant-design/icons';
+import { PartitionOutlined, RocketOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
